@@ -1,627 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="FilmScout: European cinema, US independent films, recognised world cinema and retrospectives."><title>FilmScout — v1.0</title></head><body>
+<div id="film-scout-preview">
+<style>
+#film-scout-preview{font-family:Arial,sans-serif;color:light-dark(#203041,#edf2f6);background:light-dark(#f3f6f8,#15202b);border-radius:16px;overflow:hidden;font-size:16px;line-height:1.5}#film-scout-preview *{box-sizing:border-box}#film-scout-preview header{padding:22px 28px;background:light-dark(#fff,#1d2b38);display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid light-dark(#dae3e9,#3c4c5b)}#film-scout-preview h1{font-size:28px;margin:0;color:light-dark(#196a8b,#87d3f0)}#film-scout-preview h2{font-size:23px;margin:0 0 8px}#film-scout-preview h3{font-size:20px;margin:0 0 5px}#film-scout-preview p{margin:0 0 12px}#film-scout-preview small{font-size:13px}#film-scout-preview button,#film-scout-preview select{font:inherit;padding:9px 14px;border:1px solid light-dark(#ccd9e1,#526371);border-radius:8px;background:light-dark(#fff,#243542);color:inherit}#film-scout-preview button[aria-pressed=true]{background:light-dark(#176b8b,#90d4eb);color:light-dark(#fff,#12232d);border-color:transparent}#film-scout-preview nav{display:flex;gap:8px;flex-wrap:wrap;padding:18px 28px 0}#film-scout-preview main{padding:24px 28px}#film-scout-preview .intro{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-bottom:20px}#film-scout-preview .sub{color:light-dark(#576b7a,#bdcbd6)}#film-scout-preview .filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 24px;align-items:center}#film-scout-preview .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}#film-scout-preview article{background:light-dark(#fff,#1d2b38);border:1px solid light-dark(#dce5eb,#3b4c59);border-radius:12px;overflow:hidden}#film-scout-preview .poster{height:165px;background:light-dark(#dce9ee,#304b5a);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;text-align:center;color:light-dark(#1b536b,#c5e6f2);letter-spacing:2px}#film-scout-preview .poster strong{font-size:25px;font-weight:500;letter-spacing:0}#film-scout-preview .content{padding:18px}#film-scout-preview .badge{display:inline-block;background:light-dark(#e6f1ed,#2b493e);color:light-dark(#245b46,#c1e8d5);padding:4px 8px;border-radius:5px;font-size:13px;margin-bottom:12px}#film-scout-preview .actions{display:flex;gap:8px;flex-wrap:wrap}#film-scout-preview .actions button{padding:7px 10px;font-size:14px}#film-scout-preview footer{padding:15px 28px;background:light-dark(#e8eef2,#1c2b36);font-size:13px}#film-scout-preview .notice{margin-top:16px;padding:12px;background:light-dark(#e5eff4,#263d4b);border-radius:8px}#film-scout-preview [hidden]{display:none!important}@media(max-width:700px){#film-scout-preview .grid{grid-template-columns:1fr}#film-scout-preview header,#film-scout-preview .intro{flex-direction:column}#film-scout-preview main{padding:20px}#film-scout-preview nav{padding:16px 20px 0}}
+#film-scout-preview .fs-link{display:inline-block;color:light-dark(#176b8b,#90d4eb);font-size:14px;padding:7px 0;text-decoration:underline}#film-scout-preview .poster{height:auto;min-height:155px}#film-scout-preview strong{overflow-wrap:anywhere}#film-scout-preview main>label{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px}#film-scout-preview select{max-width:100%}#film-scout-preview .poster small{letter-spacing:1px}#film-scout-preview article{min-width:0}#film-scout-preview .content{overflow-wrap:anywhere}body{margin:0;background:radial-gradient(circle at 8% 4%,rgba(168,108,255,.16),transparent 23rem),radial-gradient(circle at 92% 22%,rgba(54,215,255,.11),transparent 27rem),#070a11;color:#f4f7fb;font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}
+#film-scout-preview{--ink:#f4f7fb;--muted:#9aa7b8;--paper:#070a11;--card:#101622;--line:#263143;--gold:#c9ff3d;--orange:#ff4f9a;--blue:#36d7ff;--green:#49f2ad;--violet:#a86cff;max-width:1240px;margin:auto;font:inherit;background:transparent;color:var(--ink);border-radius:0;overflow:visible}
+#film-scout-preview header{background:rgba(7,10,17,.88);border-color:#202a38;padding:22px 24px;flex-wrap:wrap}
+#film-scout-preview h1{font-family:Inter,ui-sans-serif,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:1.4rem;font-weight:800;color:var(--ink)}
+#film-scout-preview h2,#film-scout-preview h3{font-family:Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.045em;font-weight:750}
+#film-scout-preview h2{font-size:2rem}#film-scout-preview h3{font-size:1.4rem}
+#film-scout-preview .sub{color:var(--muted)}
+#film-scout-preview button,#film-scout-preview select{background:#111927;color:#b8c4d5;border:1px solid #334158;border-radius:3px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+#film-scout-preview button:hover{border-color:var(--blue);color:var(--ink)}
+#film-scout-preview button[aria-pressed=true],#film-scout-preview #fs-back{background:var(--gold);color:#070a11;border-color:var(--gold)}
+#film-scout-preview nav{padding:20px 24px 0;gap:9px}
+#film-scout-preview nav button[aria-pressed=true]{background:var(--orange);color:white;border-color:var(--orange)}
+#film-scout-preview main{padding:26px 24px}#film-scout-preview .intro{margin-bottom:18px}
+#film-scout-preview .filters{background:#0d131e;border:1px solid #273247;padding:16px;margin:18px 0;gap:8px}
+#film-scout-preview .grid{gap:16px}
+#film-scout-preview article{background:linear-gradient(160deg,#111926,#0c111a);border:1px solid #29364b;border-radius:0;box-shadow:0 20px 55px rgba(0,0,0,.2)}
+#film-scout-preview .poster{background:linear-gradient(120deg,#0e2030,#123b4b 58%,#11202f);color:var(--ink);border-bottom:1px solid #29364b;min-height:180px;padding:24px;align-items:flex-start;text-align:left}
+#film-scout-preview .poster strong{font:750 1.65rem/1.15 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.04em;margin:12px 0}
+#film-scout-preview .poster small:first-child{color:var(--gold)}#film-scout-preview .poster small:last-child{color:var(--blue);font-size:.7rem}
+#film-scout-preview .badge{background:#1a2230;color:#b9c6d6;border-radius:3px;font-size:.82rem}
+#film-scout-preview .fs-link{color:var(--blue);font-size:.88rem;padding:8px 10px;text-decoration:none;border:1px solid #31506b;border-radius:3px}
+#film-scout-preview .fs-link:hover{background:var(--blue);color:#061016}
+#film-scout-preview .actions .fs-link:first-child{border-color:var(--gold);color:var(--gold)}
+#film-scout-preview footer{background:transparent;color:var(--muted);border-top:1px solid #222d3e;padding:24px;font-size:.84rem}
+#film-scout-preview .notice{background:#111927;color:var(--ink);border-radius:0}
+#film-scout-preview .draft-hero{display:grid;grid-template-columns:1.28fr .72fr;gap:12px;padding:26px 24px 0}
+#film-scout-preview .hero-main,#film-scout-preview .hero-side{padding:34px;min-height:260px;border:1px solid #2a3850;display:flex;flex-direction:column;justify-content:center}
+#film-scout-preview .hero-main{background:linear-gradient(120deg,#0e2030,#123b4b 58%,#11202f);clip-path:polygon(0 0,calc(100% - 45px) 0,100% 45px,100% 100%,0 100%)}
+#film-scout-preview .hero-side{background:linear-gradient(145deg,#2a1236,#7a214c 68%,#ca443f);clip-path:polygon(45px 0,100% 0,100% 100%,0 100%,0 45px)}
+#film-scout-preview .hero-main h2{font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.04;margin:14px 0}
+#film-scout-preview .hero-side h2{font-size:1.9rem;margin:12px 0}
+#film-scout-preview .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;font-weight:800}
+#film-scout-preview .draft-hero p{color:#e7eef0;margin-bottom:0}
+#film-scout-preview .brand-dot{display:inline-grid;place-items:center;width:38px;height:38px;margin-right:12px;border-radius:50%;background:var(--gold);color:#05070b;font-size:1.05rem;letter-spacing:0;box-shadow:0 0 0 6px rgba(201,255,61,.1)}
+@media(max-width:850px){#film-scout-preview .grid{grid-template-columns:repeat(2,minmax(0,1fr))}#film-scout-preview .draft-hero{grid-template-columns:1fr}}
+@media(max-width:620px){#film-scout-preview .grid{grid-template-columns:1fr}#film-scout-preview header,#film-scout-preview main{padding:20px 15px}#film-scout-preview nav{padding:16px 15px 0}#film-scout-preview .draft-hero{padding:20px 15px 0}#film-scout-preview .hero-main,#film-scout-preview .hero-side{padding:26px;min-height:210px}#film-scout-preview .intro{flex-direction:column}#film-scout-preview nav button{flex-grow:1}#film-scout-preview .filters button{flex-grow:1}}
+#film-scout-preview .fellini-view{grid-column:1/-1;background:#0d131e;border:1px solid #273247;padding:24px}#film-scout-preview .fellini-view label{display:block;margin:8px 0 12px}#film-scout-preview .fellini-view textarea{display:block;width:100%;resize:vertical;min-height:200px;background:#111927;color:#f4f7fb;border:1px solid #334158;padding:16px;font:inherit;border-radius:3px}#film-scout-preview .fellini-view p{margin:10px 0 0}</style>
+<header><div><h1><span class="brand-dot" aria-hidden="true">▶</span>FilmScout</h1><small class="sub">European cinema. Independent voices. World discoveries.</small></div><button type="button" class="cursor-interaction" id="fs-back">← Scout home</button></header>
+<nav aria-label="Film sections"><button class="cursor-interaction" aria-pressed="true" data-section="Discover">Discover</button><button class="cursor-interaction" aria-pressed="false" data-section="Festivals">Festivals</button><button class="cursor-interaction" aria-pressed="false" data-section="Critics’ choices">Critics’ choices</button><button class="cursor-interaction" aria-pressed="false" data-section="Best documentaries">Best documentaries</button><button class="cursor-interaction" aria-pressed="false" data-section="Retrospectives">Retrospectives</button></nav>
+<section class="draft-hero" aria-label="FilmScout introduction"><div class="hero-main"><span class="eyebrow">ScoutPlatform · FilmScout v1</span><h2>Discover cinema.<br>Beyond the obvious.</h2><p>European voices, independent America and exceptional films from around the world.</p></div><div class="hero-side"><span class="eyebrow">Current cinema &amp; timeless directors</span><h2>Follow the festivals.<br>Explore the masters.</h2><p>Venice · Cannes · Berlin · Sundance<br>Dedicated director and themed retrospectives.</p></div></section><main><div class="intro"><div><h2 id="fs-heading">Discover your next film</h2><p class="sub" id="fs-subtitle">New cinema and festival discoveries, country by country.</p></div><label>Viewing country<br><select aria-label="Viewing country"><option>Italy</option><option>France</option><option>Spain</option><option>United Kingdom</option><option>Serbia</option></select></label></div>
+<div class="filters" aria-label="Country filters"><button class="cursor-interaction" data-country="All" aria-pressed="true">All countries</button><button class="cursor-interaction" data-country="Italy" aria-pressed="false">Italy</button><button class="cursor-interaction" data-country="France" aria-pressed="false">France</button><button class="cursor-interaction" data-country="Spain" aria-pressed="false">Spain</button><button class="cursor-interaction" data-country="Other Europe" aria-pressed="false">Other Europe</button><button class="cursor-interaction" data-country="World" aria-pressed="false">World cinema</button><button class="cursor-interaction" data-country="US" aria-pressed="false">US independent</button></div>
+<div id="fs-festivals" class="filters" hidden><button class="cursor-interaction" data-festival="Venice">Venice</button><button class="cursor-interaction" data-festival="Cannes">Cannes</button><button class="cursor-interaction" data-festival="Berlin">Berlin</button><button class="cursor-interaction" data-festival="Sundance">Sundance</button></div>
+<div class="grid" id="fs-grid" aria-live="polite"></div><div id="fs-message" class="notice" hidden aria-live="polite"></div>
+</main><footer>Interface example · Illustrative film entries and artwork · Live releases, awards and availability will be verified.</footer>
+<script>
+(()=>{
+const root=document.getElementById('film-scout-preview');
+const awards={Italy:['David di Donatello','https://www.daviddidonatello.it/index-box-vincitori.php'],France:['César','https://www.academie-cinema.org/wp-content/uploads/2026/01/palmares-cesar-2026.pdf'],Spain:['Goya','https://www.premiosgoya.com/40-edicion/articulos/ver/palmares-40-premios-goya/']};
+const films=[
+{country:'Italy',title:'Le città di pianura',director:'Francesco Sossai',prize:'Best Film & Best Director',desc:'Two middle-aged drinking companions meet an architecture student on a journey through the Veneto plain.'},
+{country:'France',title:'L’Attachement',director:'Carine Tardieu',prize:'Best Film',desc:'The French academy’s Best Film winner, also recognised for its adapted screenplay and supporting actress.'},
+{country:'Spain',title:'Los domingos',director:'Alauda Ruiz de Azúa',prize:'Best Film & Best Director',desc:'Also recognised for original screenplay, leading actress and supporting actress at the 2026 Goyas.'},
+{country:'Italy',title:'Gioia mia',director:'Margherita Spampinato',prize:'Best Directorial Debut',desc:'A technology-loving child spends the summer with an elderly aunt in Sicily, in a home without Wi-Fi.'},
+{country:'France',title:'Nino',director:'Pauline Loquès',prize:'Best First Film',desc:'A debut recognised by the César academy. Théodore Pellerin also won its emerging actor award for this film.'},
+{country:'Spain',title:'Sorda',director:'Eva Libertad',prize:'Best New Director',desc:'Motherhood and the tensions between deaf and hearing worlds. Also awarded for emerging actress and supporting actor.'}
+];
+films.push(...[{"country": "Other Europe", "title": "Yellow Letters", "director": "İlker Çatak", "countries": "Germany, France, Turkey", "prize": "Berlin 2026 · Golden Bear", "source": "https://www.german-films.de/news/all-news-releases/article/awards-for-german-films-co-productions-at-the-berlin-international-film-festival-2026/", "desc": "A Turkish-language drama about a marriage under political pressure."}, {"country": "Other Europe", "title": "Woman Unknown", "director": "May el-Toukhy", "countries": "Denmark, Sweden, Latvia", "prize": "Venice 2026 · Golden Lion", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "Diane in the Loop", "director": "Ann Sirot & Raphaël Balboni", "countries": "Belgium, France", "prize": "Venice 2026 · Best Film, Orizzonti", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "A Day in the Life of Jo: Chapter Phaedra", "director": "Jacqueline Lentzou", "countries": "Greece, Germany, France", "prize": "Venice 2026 · Best Director, Orizzonti", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "I Matter", "director": "Alina Șerban", "countries": "Romania, Germany, Belgium", "prize": "Venice 2026 · Spotlight Audience Award", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "DAU", "director": "Ilya Khrzhanovsky", "countries": "Germany, France, Sweden", "prize": "Venice 2026 · Best Director", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "Naza", "director": "Yuval Abraham & Rachel Szor", "countries": "United Kingdom", "prize": "Venice 2026 · Special Jury Prize", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": ""}, {"country": "Other Europe", "title": "Fjord", "director": "Cristian Mungiu", "countries": "Romania, France, Norway, Sweden, Denmark", "prize": "Cannes 2026 · Palme d’Or", "source": "https://www.festival-cannes.com/en/retrospective/2026/awards/", "desc": "Two neighbouring families confront conflicting ideas about raising children."}, {"country": "Other Europe", "title": "Minotaur", "director": "Andrei Zvyagintsev", "countries": "France, Latvia, Germany", "prize": "Cannes 2026 · Grand Prix", "source": "https://www.festival-cannes.com/en/retrospective/2026/awards/", "desc": "In Russia in 2022, corporate pressure and instability threaten a company director’s ordered life."}, {"country": "Other Europe", "title": "Fatherland", "director": "Paweł Pawlikowski", "countries": "Poland, Germany, Italy, France", "prize": "Cannes 2026 · Joint Best Director award", "source": "https://www.festival-cannes.com/en/retrospective/2026/awards/", "desc": "Thomas Mann returns from exile to a divided Germany and a fractured family."}, {"country": "Other Europe", "title": "The Dreamed Adventure", "director": "Valeska Grisebach", "countries": "Germany, France, Bulgaria, Austria", "prize": "Cannes 2026 · Jury Prize", "source": "https://www.festival-cannes.com/en/retrospective/2026/awards/", "desc": "An archaeologist in a Bulgarian border town reconnects with an acquaintance and encounters hidden criminal ties."}, {"country": "Other Europe", "title": "Everytime", "director": "Sandra Wollner", "countries": "Austria, Germany", "prize": "Cannes 2026 · Un Certain Regard Prize", "source": "https://www.festival-cannes.com/en/retrospective/2026/awards/", "desc": ""}, {"country": "Other Europe", "title": "Sentimental Value", "director": "Joachim Trier", "countries": "Norway, France, Denmark, Germany, Sweden", "prize": "European Film Awards 2026 · Best Film", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Fiume o morte!", "director": "Igor Bezinović", "countries": "Croatia, Slovenia, Italy", "prize": "European Film Awards 2026 · Best Documentary", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "On Falling", "director": "Laura Carreira", "countries": "United Kingdom, Portugal", "prize": "European Film Awards 2026 · Discovery winner", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Little Trouble Girls", "director": "Urška Djukić", "countries": "Slovenia, Italy, Croatia, Serbia", "prize": "European Film Awards 2026 · Discovery nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "My Father’s Shadow", "director": "Akinola Davies Jr", "countries": "United Kingdom, Nigeria", "prize": "European Film Awards 2026 · Discovery nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "One of Those Days When Hemme Dies", "director": "Murat Fıratoğlu", "countries": "Turkey, Germany", "prize": "European Film Awards 2026 · Discovery nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Sauna", "director": "Mathias Broe", "countries": "Denmark", "prize": "European Film Awards 2026 · Discovery nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Dog of God", "director": "Raitis Ābele & Lauris Ābele", "countries": "Latvia, United States", "prize": "European Film Awards 2026 · Animation nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Songs of Slow Burning Earth", "director": "Olha Zhurba", "countries": "Ukraine, France, Denmark, Sweden", "prize": "European Film Awards 2026 · Documentary nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Tales from the Magic Garden", "director": "David Súkup, Patrik Pašš, Leon Vidmar & Jean-Claude Rozec", "countries": "Czech Republic, Slovakia, Slovenia, France", "prize": "European Film Awards 2026 · Animation nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Riefenstahl", "director": "Andres Veiel", "countries": "Germany", "prize": "European Film Awards 2026 · Documentary nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "Late Shift", "director": "Petra Volpe", "countries": "Switzerland, Germany", "prize": "European Film Awards 2026 · Actress nominee: Leonie Benesch", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "Franz", "director": "Agnieszka Holland", "countries": "Czech Republic, Germany, Poland", "prize": "European Film Awards 2026 · Actor nominee: Idan Weiss", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "The Last Viking", "director": "Anders Thomas Jensen", "countries": "Denmark, Sweden", "prize": "European Film Awards 2026 · Actor nominee: Mads Mikkelsen", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "I Accidentally Wrote a Book", "director": "Nóra Lakos", "countries": "Hungary, Netherlands", "prize": "European Film Awards 2026 · Young Audience nominee", "source": "https://www.europeanfilmacademy.org/press/winners-european-film-awards-2026/", "desc": ""}, {"country": "Other Europe", "title": "The Love That Remains", "director": "Hlynur Pálmason", "countries": "Iceland, Denmark, Sweden, France", "prize": "European Film Academy · 2026 shortlist", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "The North", "director": "Bart Schrijver", "countries": "Netherlands", "prize": "European Film Academy · 2026 shortlist", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "Father", "director": "Tereza Nvotová", "countries": "Slovakia, Czech Republic, Poland", "prize": "European Film Academy · 2026 shortlist", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "I Only Rest in the Storm", "director": "Pedro Pinho", "countries": "Portugal, France, Brazil, Romania", "prize": "European Film Academy · 2026 shortlist", "source": "https://www.europeanfilmawards.eu/award-edition/awards-2026/?tab=selections", "desc": ""}, {"country": "Other Europe", "title": "DJ Ahmet", "director": "Georgi M. Unkovski", "countries": "North Macedonia, Czech Republic, Serbia, Croatia", "prize": "Sundance 2025 · World Cinema Dramatic Audience Award", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "desc": ""}, {"country": "Other Europe", "title": "Better Go Mad in the Wild", "director": "Miro Remo", "countries": "Czech Republic, Slovakia", "prize": "Karlovy Vary 2025 · Crystal Globe", "source": "https://www.kviff.com/en/news/5544-the-crystal-globe-goes-to-the-czech-slovak-documentary-better-go-mad-in-the-wild", "desc": ""}, {"country": "Other Europe", "title": "Young Mothers", "director": "Jean-Pierre & Luc Dardenne", "countries": "Belgium, France", "prize": "Cannes 2025 · Best Screenplay", "source": "https://www.festival-cannes.com/en/f/jeunes-meres/", "desc": "Five young women living in a mothers’ shelter search for a different future."}]);
+films.push(...[{"country": "US", "title": "Josephine", "director": "Beth de Araújo", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Dramatic · Grand Jury + Audience", "kind": "Fiction", "desc": "A child struggles after witnessing a crime.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Nuisance Bear", "director": "Gabriela Osio Vanden & Jack Weisman", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Grand Jury", "kind": "Documentary", "desc": "Polar bears meet an expanding human world.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States, Canada"}, {"country": "US", "title": "American Pachuco: The Legend of Luis Valdez", "director": "David Alvarado", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Audience + Festival Favorite", "kind": "Documentary", "desc": "Chicano storytelling and the career of Luis Valdez.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Take Me Home", "director": "Liz Sargent", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · Waldo Salt Screenwriting", "kind": "Fiction", "desc": "A Korean adoptee faces an uncertain future.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Bedford Park", "director": "Stephanie Ahn", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Dramatic · Debut Feature", "kind": "Fiction", "desc": "A Korean American woman confronts her past.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Ha-chan, Shake Your Booty!", "director": "Josef Kubota Wladyka", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Dramatic · Directing", "kind": "Fiction", "desc": "Grief, romance and Tokyo ballroom dancing.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Soul Patrol", "director": "J.M. Harper", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Directing", "kind": "Documentary", "desc": "Black Vietnam veterans reunite to tell their story.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Barbara Forever", "director": "Brydie O’Connor", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Editing", "kind": "Documentary", "desc": "The life and art of Barbara Hammer.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "The Lake", "director": "Abby Ellis", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Impact for Change", "kind": "Documentary", "desc": "A race to prevent environmental catastrophe in Utah.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Who Killed Alex Odeh?", "director": "Jason Osder & William Lafi Youmans", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · U.S. Documentary · Journalistic Excellence", "kind": "Documentary", "desc": "An assassination and the long pursuit of justice.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "TheyDream", "director": "William David Caballero", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · NEXT · Creative Expression", "kind": "Documentary", "desc": "Family memories rebuilt through animation.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States"}, {"country": "US", "title": "Aanikoobijigan", "director": "Adam Khalil & Zack Khalil", "festival": "Sundance", "awardYear": 2026, "prize": "Sundance 2026 · NEXT · Audience", "kind": "Documentary", "desc": "Indigenous repatriation specialists seek to return ancestors home.", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "countries": "United States, Denmark"}, {"country": "US", "title": "Atropia", "director": "Hailey Gates", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · U.S. Dramatic · Grand Jury", "kind": "Fiction", "desc": "Romance inside a military role-playing facility.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "Seeds", "director": "Brittany Shyne", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · U.S. Documentary · Grand Jury", "kind": "Documentary", "desc": "Black farmers, land and generational inheritance.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "Twinless", "director": "James Sweeney", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · U.S. Dramatic · Audience", "kind": "Fiction", "desc": "An unlikely friendship begins in a bereavement group.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "East of Wall", "director": "Kate Beecroft", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · NEXT · Audience", "kind": "Fiction", "desc": "A horse trainer shelters troubled teenagers.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "The Perfect Neighbor", "director": "Geeta Gandbhir", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · U.S. Documentary · Directing", "kind": "Documentary", "desc": "A neighbourhood dispute escalates into fatal violence.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "Ricky", "director": "Rashad Frett", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · U.S. Dramatic · Directing", "kind": "Fiction", "desc": "The challenge of rebuilding life after prison.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "Sorry, Baby", "director": "Eva Victor", "festival": "Sundance", "awardYear": 2025, "prize": "Sundance 2025 · Waldo Salt Screenwriting", "kind": "Fiction", "desc": "Recovery, friendship and life after trauma.", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "countries": "United States"}, {"country": "US", "title": "Cotton Fever", "director": "Daniel Blake Schwartz", "festival": "Tribeca", "awardYear": 2026, "prize": "Tribeca 2026 · Best U.S. Narrative Feature", "kind": "Fiction", "desc": "Love and addiction in precarious circumstances.", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "countries": "United States"}, {"country": "US", "title": "Here I’m Alive", "director": "Joshua Z Weinstein", "festival": "Tribeca", "awardYear": 2026, "prize": "Tribeca 2026 · U.S. Narrative · Special Jury Mention", "kind": "Fiction", "desc": "Loneliness, online identity and marginal subcultures.", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "countries": "United States"}, {"country": "US", "title": "Time Warp", "director": "Allison Berg", "festival": "Tribeca", "awardYear": 2026, "prize": "Tribeca 2026 · Documentary · Special Jury Mention", "kind": "Documentary", "desc": "A small town and an LGBTQ theatre production.", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "countries": "United States"}, {"country": "US", "title": "Harvest", "director": "Natalie Baszile & Hyacinth Parker", "festival": "Tribeca", "awardYear": 2026, "prize": "Tribeca 2026 · New Documentary Director · Special Mention", "kind": "Documentary", "desc": "Recognised for intimate, humane documentary storytelling.", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "countries": "United States"}, {"country": "US", "title": "Jail Time Records", "director": "Dione Roach & Steve Happi", "festival": "Tribeca", "awardYear": 2026, "prize": "Tribeca 2026 · Best Documentary Feature", "kind": "Documentary", "desc": "A music studio inside a Cameroonian prison.", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "countries": "Cameroon, United States"}, {"country": "US", "title": "Charliebird", "director": "Libby Ewing", "festival": "Tribeca", "awardYear": 2025, "prize": "Tribeca 2025 · Best U.S. Narrative Feature", "kind": "Fiction", "desc": "A feature debut recognised for its performances.", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "countries": "United States"}, {"country": "US", "title": "On a String", "director": "Isabel Hagen", "festival": "Tribeca", "awardYear": 2025, "prize": "Tribeca 2025 · U.S. Narrative · Best Screenplay", "kind": "Fiction", "desc": "A young woman navigates a life in music.", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "countries": "United States"}, {"country": "US", "title": "Natchez", "director": "Suzannah Herbert", "festival": "Tribeca", "awardYear": 2025, "prize": "Tribeca 2025 · Best Documentary Feature", "kind": "Documentary", "desc": "History, racism and tourism in Mississippi.", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "countries": "United States"}, {"country": "US", "title": "Wishful Thinking", "director": "Graham Parkes", "festival": "SXSW", "awardYear": 2026, "prize": "SXSW 2026 · Narrative Feature · Jury Winner", "kind": "Fiction", "desc": "A couple’s connection has unexpected consequences.", "source": "https://sxsw.com/wp-content/uploads/2026/03/2026-FTV-Jury-Special-Awards.pdf", "countries": "United States"}, {"country": "US", "title": "Summer 2000: The X-Cetra Story", "director": "Ayden Mayeri", "festival": "SXSW", "awardYear": 2026, "prize": "SXSW 2026 · Documentary Feature · Jury Winner", "kind": "Documentary", "desc": "A music documentary recognised by the SXSW jury.", "source": "https://sxsw.com/wp-content/uploads/2026/03/2026-FTV-Jury-Special-Awards.pdf", "countries": "United States"}, {"country": "US", "title": "You Look Fine", "director": "J. Snow", "festival": "Slamdance", "awardYear": 2026, "prize": "Slamdance 2026 · Unstoppable Feature · Grand Jury + Audience", "kind": "Fiction", "desc": "Comedy, pain and disability.", "source": "https://slamdance.com/2026-award-winners/", "countries": "United States"}, {"country": "US", "title": "BRB", "director": "Kate Cobb", "festival": "Slamdance", "awardYear": 2026, "prize": "Slamdance 2026 · Breakout Feature · Honorable Mention", "kind": "Fiction", "desc": "Two sisters seek an online boyfriend.", "source": "https://slamdance.com/2026-award-winners/", "countries": "United States"}, {"country": "US", "title": "Train Dreams", "director": "Clint Bentley", "festival": "Spirit Awards", "awardYear": 2026, "prize": "Spirit Awards 2026 · Best Feature + Director", "kind": "Fiction", "desc": "Recognised for direction and cinematography.", "source": "https://www.filmindependent.org/press-releases/film-independent-celebrates-2026-spirit-awards-winners-at-41st-annual-ceremony/", "countries": "United States"}, {"country": "US", "title": "Lurker", "director": "Alex Russell", "festival": "Spirit Awards", "awardYear": 2026, "prize": "Spirit Awards 2026 · Best First Feature + First Screenplay", "kind": "Fiction", "desc": "A debut recognised for writing and filmmaking.", "source": "https://www.filmindependent.org/press-releases/film-independent-celebrates-2026-spirit-awards-winners-at-41st-annual-ceremony/", "countries": "United States"}]);
+films.push(...[{"country": "World", "title": "Ben’imana", "director": "Marie-Clémentine Dusabejambo", "focusCountry": "Rwanda", "region": "Africa", "prize": "Cannes 2026 · Caméra d’or", "source": "https://www.festival-cannes.com/en/f/ben-imana/", "desc": "A survivor confronts the personal limits of reconciliation.", "kind": "Fiction"}, {"country": "World", "title": "House of the Wind", "director": "Auguste Bernard Kouemo Yanghu", "focusCountry": "Cameroon", "region": "Africa", "prize": "Venice 2026 · Lion of the Future + Orizzonti Special Jury Prize", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "LADY", "director": "Olive Nwosu", "focusCountry": "Nigeria", "region": "Africa", "prize": "Sundance 2026 · World Dramatic · Acting Ensemble", "source": "https://www.sundance.org/blogs/the-complete-list-of-2026-sundance-film-festival-award-winners/", "desc": "A Lagos cab driver finds an unexpected sisterhood.", "kind": "Fiction"}, {"country": "World", "title": "Katanga, la danse des scorpions", "director": "Dani Kouyaté", "focusCountry": "Burkina Faso", "region": "Africa", "prize": "FESPACO 2025 · Étalon d’or de Yennenga", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Tongo Saa", "director": "Nelson Makengo", "focusCountry": "DR Congo", "region": "Africa", "prize": "FESPACO 2025 · Documentary · Étalon d’argent", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Documentary"}, {"country": "World", "title": "La Source", "director": "Meryem Joobeur", "focusCountry": "Tunisia", "region": "Africa", "prize": "FESPACO 2025 · Best First Fiction Feature", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Catcher", "director": "Derwha Kasunzu", "focusCountry": "DR Congo", "region": "Africa", "prize": "FESPACO 2025 · Best First Documentary", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Documentary"}, {"country": "World", "title": "Liti Liti", "director": "Mamadou Khouma Gueye", "focusCountry": "Senegal", "region": "Africa", "prize": "JCC 2025 · Documentary · Tanit d’or", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Documentary"}, {"country": "World", "title": "Promised Sky", "director": "Erige Sehiri", "focusCountry": "Tunisia", "region": "Africa", "prize": "Marrakech 2025 · Étoile d’or; Cannes 2025 · Un Certain Regard selection", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Diya", "director": "Achille Ronaimou", "focusCountry": "Chad", "region": "Africa", "prize": "FESPACO 2025 · Best Actor; JCC 2025 · Editing + Music", "source": "https://www.imagesfrancophones.org/actualites/2025-record-battu-24-selections-en-grands-festivals-pour-les-films-soutenus-par-l-oif", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Happy Birthday", "director": "Sarah Goher", "focusCountry": "Egypt", "region": "Africa", "prize": "Tribeca 2025 · Best International Narrative", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Jail Time Records", "director": "Dione Roach & Steve Happi", "focusCountry": "Cameroon", "region": "Africa", "prize": "Tribeca 2026 · Best Documentary Feature", "source": "https://tribecafilm.com/press-center/press-releases/2026-tribeca-festival-announces-winners", "desc": "A recording studio inside a Cameroonian prison.", "kind": "Documentary"}, {"country": "World", "title": "Elephants in the Fog", "director": "Abinash Bikram Shah", "focusCountry": "Nepal", "region": "Asia", "prize": "Cannes 2026 · Un Certain Regard · Jury Prize", "source": "https://www.festival-cannes.com/en/f/elephants-in-the-fog/", "desc": "A Kinnar matriarch searches for a missing daughter.", "kind": "Fiction"}, {"country": "World", "title": "Possible Love", "director": "Lee Chang-dong", "focusCountry": "South Korea", "region": "Asia", "prize": "Venice 2026 · Silver Lion · Grand Jury Prize", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Two Seasons, Two Strangers", "director": "Sho Miyake", "focusCountry": "Japan", "region": "Asia", "prize": "Locarno 2025 · Golden Leopard", "source": "https://www.locarnofestival.ch/press/press-releases/2025/08/locarno78-pardo-d-oro-to-tabi-to-hibi-sho-miyake.html", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Resurrection", "director": "Bi Gan", "focusCountry": "China", "region": "Asia", "prize": "Cannes 2025 · Special Award", "source": "https://www.festival-cannes.com/en/f/kuang-ye-shi-dai/", "desc": "Dreams and cinema in a world that has forgotten how to dream.", "kind": "Fiction"}, {"country": "World", "title": "Living the Land", "director": "Huo Meng", "focusCountry": "China", "region": "Asia", "prize": "Berlin 2025 · Silver Bear · Best Director", "source": "https://www.reuters.com/lifestyle/norwegian-film-dreams-sex-love-wins-berlin-film-festivals-golden-bear-top-prize-2025-02-22/", "desc": "Generations of farmers face a changing China.", "kind": "Fiction"}, {"country": "World", "title": "Filipiñana", "director": "Rafael Manuel", "focusCountry": "Philippines", "region": "Asia", "prize": "Sundance 2026 · World Dramatic · Creative Vision", "source": "https://www.sundance.org/blogs/the-complete-list-of-2026-sundance-film-festival-award-winners/", "desc": "Class divisions at a country club.", "kind": "Fiction"}, {"country": "World", "title": "Sabar Bonda (Cactus Pears)", "director": "Rohan Parashuram Kanawade", "focusCountry": "India", "region": "Asia", "prize": "Sundance 2025 · World Dramatic · Grand Jury Prize", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "desc": "A mourning visit becomes an unexpected connection.", "kind": "Fiction"}, {"country": "World", "title": "It Was Just an Accident", "director": "Jafar Panahi", "focusCountry": "Iran", "region": "Middle East", "prize": "Cannes 2025 · Palme d’or", "source": "https://www.festival-cannes.com/en/f/un-simple-accident/", "desc": "A chance encounter opens a question of justice and revenge.", "kind": "Fiction"}, {"country": "World", "title": "Falling House", "director": "Mohsen Gharaei", "focusCountry": "Iran", "region": "Middle East", "prize": "Venice 2026 · Orizzonti Best Actress: Laleh Marzban", "source": "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Cutting Through Rocks", "director": "Sara Khaki & Mohammadreza Eyni", "focusCountry": "Iran", "region": "Middle East", "prize": "Sundance 2025 · World Documentary · Grand Jury Prize", "source": "https://www.sundance.org/blogs/2025-sundance-film-festival-award-winners-announced/", "desc": "An elected village councilwoman challenges patriarchal rules.", "kind": "Documentary"}, {"country": "World", "title": "Birds of War", "director": "Janay Boulos & Abd Alkader Habak", "focusCountry": "Syria / Lebanon", "region": "Middle East", "prize": "Sundance 2026 · World Documentary · Journalistic Impact", "source": "https://www.sundance.org/blogs/the-complete-list-of-2026-sundance-film-festival-award-winners/", "desc": "A personal archive of love, revolution and exile.", "kind": "Documentary"}, {"country": "World", "title": "Once Upon a Time in Gaza", "director": "Arab & Tarzan Nasser", "focusCountry": "Palestine", "region": "Middle East", "prize": "Cannes 2025 · Un Certain Regard · Best Directing", "source": "https://www.festival-cannes.com/en/f/once-upon-a-time-in-gaza/", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "The President’s Cake", "director": "Hasan Hadi", "focusCountry": "Iraq", "region": "Middle East", "prize": "Cannes 2025 · Caméra d’or", "source": "https://www.festival-cannes.com/en/press/press-releases/the-78th-festival-de-cannes-winners-list/", "desc": "A child is tasked with preparing a birthday cake for Saddam Hussein.", "kind": "Fiction"}, {"country": "World", "title": "The Secret Agent", "director": "Kleber Mendonça Filho", "focusCountry": "Brazil", "region": "Latin America", "prize": "Cannes 2025 · Best Director + Best Actor", "source": "https://www.festival-cannes.com/en/f/o-agente-secreto/", "desc": "A fugitive returns to Recife during carnival in 1977.", "kind": "Fiction"}, {"country": "World", "title": "The Blue Trail", "director": "Gabriel Mascaro", "focusCountry": "Brazil", "region": "Latin America", "prize": "Berlin 2025 · Silver Bear · Grand Jury Prize", "source": "https://www.berlinale.de/en/2025/programme/202510635.html", "desc": "An older woman resists a future prescribed for her.", "kind": "Fiction"}, {"country": "World", "title": "The Message", "director": "Iván Fund", "focusCountry": "Argentina", "region": "Latin America", "prize": "Berlin 2025 · Silver Bear · Jury Prize", "source": "https://www.reuters.com/lifestyle/norwegian-film-dreams-sex-love-wins-berlin-film-festivals-golden-bear-top-prize-2025-02-22/", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "The Mysterious Gaze of the Flamingo", "director": "Diego Céspedes", "focusCountry": "Chile", "region": "Latin America", "prize": "Cannes 2025 · Un Certain Regard Prize", "source": "https://www.festival-cannes.com/en/f/la-misteriosa-mirada-del-flamenco/", "desc": "A queer family confronts fear and rumours in a mining town.", "kind": "Fiction"}, {"country": "World", "title": "A Poet", "director": "Simón Mesa Soto", "focusCountry": "Colombia", "region": "Latin America", "prize": "Cannes 2025 · Un Certain Regard · Jury Prize", "source": "https://www.festival-cannes.com/en/f/un-poeta/", "desc": "A struggling poet encounters a young writing talent.", "kind": "Fiction"}, {"country": "World", "title": "A Bright Future", "director": "Lucía Garibaldi", "focusCountry": "Uruguay", "region": "Latin America", "prize": "Tribeca 2025 · Viewpoints Award", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "desc": "", "kind": "Fiction"}, {"country": "World", "title": "Runa Simi", "director": "Augusto Zegarra", "focusCountry": "Peru", "region": "Latin America", "prize": "Tribeca 2025 · Best New Documentary Director", "source": "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions", "desc": "", "kind": "Documentary"}, {"country": "World", "title": "Bring Her Back", "director": "Danny & Michael Philippou", "focusCountry": "Australia", "region": "Oceania", "prize": "AACTA 2026 · Best Film + Direction", "source": "https://www.aacta.org/our-news/media-room/aacta-announces-the-winners-for-the-2026-aacta-awards-presented-by-foxtel-group/", "desc": "Two siblings discover a frightening ritual in their foster home.", "kind": "Fiction"}, {"country": "World", "title": "Lesbian Space Princess", "director": "Emma Hough Hobbs & Leela Varghese", "focusCountry": "Australia", "region": "Oceania", "prize": "AACTA 2026 · Best Indie Film", "source": "https://www.aacta.org/our-news/media-room/aacta-announces-the-winners-for-the-2026-aacta-awards-presented-by-foxtel-group/", "desc": "An animated rescue mission through a queer sci-fi universe.", "kind": "Animation"}, {"country": "World", "title": "Journey Home, David Gulpilil", "director": "Trisha Morton-Thomas & Maggie Miles", "focusCountry": "Australia", "region": "Oceania", "prize": "AACTA 2026 · Best Documentary", "source": "https://www.aacta.org/our-news/media-room/aacta-announces-the-winners-for-the-2026-aacta-awards-presented-by-foxtel-group/", "desc": "A Yolŋu actor’s final journey to his homeland.", "kind": "Documentary"}, {"country": "World", "title": "Nuisance Bear", "director": "Gabriela Osio Vanden & Jack Weisman", "focusCountry": "Canada", "region": "Canada", "prize": "Sundance 2026 · U.S. Documentary · Grand Jury Prize", "source": "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/", "desc": "Canadian–US co-production; also featured in US Independent.", "kind": "Documentary"}]);
+const criticLists=[{"name": "The Guardian", "title": "The best films of 2026 so far", "type": "Critics’ selection · June 2026", "url": "https://www.theguardian.com/film/ng-interactive/2026/jun/10/the-best-films-of-2026-so-far", "films": ["The Secret Agent", "Sound of Falling", "Eagles of the Republic", "Hen"]}, {"name": "Sight and Sound / BFI", "title": "50 best films of 2025", "type": "International critics’ poll · December 2025", "url": "https://www.bfi.org.uk/sight-and-sound/polls/50-best-films-2025", "films": ["The Mastermind", "Sirât", "Resurrection", "Sentimental Value", "Dry Leaf", "With Hasan in Gaza", "What Does That Nature Say to You"]}, {"name": "Film Comment", "title": "Best Films of 2025", "type": "Contributors’ poll · 2025 US releases", "url": "https://www.filmcomment.com/best-films-of-2025/", "films": ["The Mastermind", "The Secret Agent", "It Was Just an Accident", "Caught by the Tides", "Afternoons of Solitude", "Misericordia", "Sirât", "The Shrouds", "If I Had Legs I’d Kick You"]}, {"name": "Screen Slate", "title": "Best Movies of 2025", "type": "Critics, filmmakers and cinema workers · December 2025", "url": "https://www.screenslate.com/articles/screen-slates-best-movies-2025", "films": ["Resurrection", "Henry Fonda for President", "Eephus", "Peter Hujar’s Day", "Misericordia", "The Secret Agent"], "app": "https://letterboxd.com/screenslate/list/screen-slates-best-movies-of-2025/"}, {"name": "The Film Stage", "title": "Top 50 Films of 2025", "type": "Film blog · Contributors’ poll · December 2025", "url": "https://thefilmstage.com/the-film-stages-top-50-films-of-2025/", "films": ["The Shrouds", "Afternoons of Solitude", "Caught by the Tides", "Resurrection", "The Mastermind"]}, {"name": "MUBI Notebook", "title": "Fantasy Double Features of 2025", "type": "Writers’ pairings · Recent films with older companions", "url": "https://mubi.com/en/notebook/posts/fantasy-double-features-of-2025", "films": ["The Elysian Field + Songs My Brothers Taught Me", "Sirât + Waiting for Happiness", "Miroirs No. 3 + The Tsugua Diaries"], "note": "Writer-selected double bills, not a ranked best-of list. Earlier films are companion screenings."}, {"name": "Criterion Collection", "title": "Filmmakers’ and artists’ Top 10 lists", "type": "Retrospective discovery · Personal selections", "url": "https://www.criterion.com/current/top-10-lists", "films": [], "note": "Browse personal selections for retrospective inspiration. These are catalogue favourites, not a current-release ranking."}];
+const felliniFilms=[[1950, "Luci del varietà", "Variety Lights", "Co-directed with Alberto Lattuada"], [1952, "Lo sceicco bianco", "The White Sheik", "Feature"], [1953, "I vitelloni", "", "Feature"], [1953, "L’amore in città", "Love in the City", "Anthology segment: Un’agenzia matrimoniale"], [1954, "La strada", "", "Feature"], [1955, "Il bidone", "The Swindle", "Feature"], [1957, "Le notti di Cabiria", "Nights of Cabiria", "Feature"], [1960, "La dolce vita", "", "Feature"], [1962, "Boccaccio ’70", "", "Anthology segment: Le tentazioni del dottor Antonio"], [1963, "8½", "Otto e mezzo", "Feature"], [1965, "Giulietta degli spiriti", "Juliet of the Spirits", "Feature"], [1968, "Toby Dammit", "", "Segment in Spirits of the Dead / Tre passi nel delirio"], [1969, "Block-notes di un regista", "Fellini: A Director’s Notebook", "Television documentary"], [1969, "Fellini Satyricon", "", "Feature"], [1970, "I clowns", "The Clowns", "Television film / documentary"], [1972, "Roma", "", "Feature"], [1973, "Amarcord", "", "Feature"], [1976, "Il Casanova di Federico Fellini", "Fellini’s Casanova", "Feature"], [1978, "Prova d’orchestra", "Orchestra Rehearsal", "Television film"], [1980, "La città delle donne", "City of Women", "Feature"], [1983, "E la nave va", "And the Ship Sails On", "Feature"], [1986, "Ginger e Fred", "Ginger and Fred", "Feature"], [1987, "Intervista", "", "Feature"], [1990, "La voce della luna", "The Voice of the Moon", "Feature"]];
+const directors={'Federico Fellini':['La strada (1954)','La dolce vita (1960)','8½ (1963)','Amarcord (1973)'],'Michelangelo Antonioni':['L’avventura (1960)','La notte (1961)','L’eclisse (1962)','Blow-Up (1966)'],'Jean-Luc Godard':['Breathless (1960)','Contempt (1963)','Pierrot le fou (1965)'],'Pedro Almodóvar':['Women on the Verge of a Nervous Breakdown (1988)','All About My Mother (1999)','Talk to Her (2002)','Pain and Glory (2019)'],'Andrei Tarkovsky':['Ivan’s Childhood (1962)','Andrei Rublev (1966)','Solaris (1972)','Mirror (1975)','Stalker (1979)']};
+const collections={'French New Wave':['Breathless — Jean-Luc Godard (1960)','The 400 Blows — François Truffaut (1959)','Cléo from 5 to 7 — Agnès Varda (1962)'],'Anti-war cinema':['Paths of Glory — Stanley Kubrick (1957)','Come and See — Elem Klimov (1985)','The Thin Red Line — Terrence Malick (1998)']};
+let section='Discover',country='All',history=[],europeCountry='All',usFestival='All',worldRegion='All';
+const grid=root.querySelector('#fs-grid'),heading=root.querySelector('#fs-heading'),subtitle=root.querySelector('#fs-subtitle'),filters=root.querySelector('.filters');
+const link=(url,label)=>`<a class="fs-link cursor-interaction" href="${url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
+const search=(title)=>'https://www.youtube.com/results?search_query='+encodeURIComponent(title+' official trailer');
+function save(){history.push({section,country,europeCountry,usFestival,worldRegion});}
+function filmCards(){const list=films.filter(f=>(country!=='World'||worldRegion==='All'||f.region===worldRegion)&&(country==='All'||f.country===country)&&(section!=='National Awards'||!f.source)&&(country!=='US'||usFestival==='All'||f.festival===usFestival)&&(country!=='Other Europe'||europeCountry==='All'||f.countries.split(', ').includes(europeCountry)));grid.innerHTML=list.length?list.map(f=>`<article><div class="poster"><small>${(f.focusCountry||f.countries||f.country).toUpperCase()}</small><strong>${f.title}</strong><small>FESTIVAL & AWARDS DISCOVERIES</small></div><div class="content"><h3>${f.title}</h3><p class="sub">${f.director}${f.focusCountry?' · '+f.region:''}${f.kind?' · '+f.kind:''}</p><span class="badge">${f.source ? f.prize : awards[f.country][0]+' 2026 · '+f.prize}</span><p>${f.desc}</p><div class="actions">${link(search(f.title+' '+f.director),'Find trailer')}${link(f.source||awards[f.country][1],'Recognition source')}</div></div></article>`).join(''):'<p>No researched films in this country section yet.</p>';}
+function render(){root.querySelector('#fs-message').hidden=true;const wp=root.querySelector('#fs-world-picker');if(wp){wp.hidden=country!=='World'||section!=='Country';wp.querySelector('select').value=worldRegion;}root.querySelector('#fs-festivals').hidden=true;filters.hidden=!['Discover','National Awards','Country'].includes(section);const picker=root.querySelector('#fs-europe-picker');if(picker){picker.hidden=country!=='Other Europe'||section!=='Country';picker.querySelector('select').value=europeCountry;}const usPicker=root.querySelector('#fs-us-picker');if(usPicker){usPicker.hidden=country!=='US'||section!=='Country';usPicker.querySelector('select').value=usFestival;}root.querySelectorAll('[data-section]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.section===section));root.querySelectorAll('[data-country]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.country===country));heading.textContent=section==='Country'?(country==='US'?'US Independent':country==='World'?'World Cinema':country+' cinema'):section;subtitle.textContent='';
+if(['Discover','National Awards','Country'].includes(section)){heading.textContent=section==='Discover'?'Current cinema · Award discoveries':heading.textContent;subtitle.textContent=country==='World'?'36 films · 2025–2026 recognition · Africa, Asia, Middle East, Latin America, Oceania and Canada':country==='US'?'33 films · Sundance, SXSW, Tribeca, Slamdance and Spirit Awards · 2025–2026':country==='Other Europe'?'34 researched films · 2025–2026 recognition · fiction, documentaries, animation and debuts':'Recent films and recognition across Europe, US independent and world cinema';filmCards();}
+else if(section==='Best documentaries'){subtitle.textContent='Award winners and nominees · Recent European, world and US independent documentaries';const seen=new Set();const docs=films.filter(f=>f.kind==='Documentary'||/documentary/i.test(f.prize)).filter(f=>{if(seen.has(f.title))return false;seen.add(f.title);return true;});grid.innerHTML=docs.map(f=>`<article><div class="poster"><small>${(f.focusCountry||f.countries||f.country).toUpperCase()}</small><strong>${f.title}</strong><small>DOCUMENTARY DISCOVERIES</small></div><div class="content"><h3>${f.title}</h3><p class="sub">${f.director}</p><span class="badge">${f.prize}</span><p>${f.desc||''}</p><div class="actions">${link(search(f.title+' '+f.director),'Find trailer')}${link(f.source,'Recognition source')}</div></div></article>`).join('');}
+else if(section==='Retrospectives'||section==='Federico Fellini'){heading.textContent='Retrospectives · Federico Fellini';subtitle.textContent='Featured director · Films in chronological order, 1950–1990 · Features, television and anthology contributions';grid.innerHTML=`<article><div class="content"><span class="eyebrow">Current retrospective</span><h3>Federico Fellini</h3><div class="actions">${link('https://www.criterion.com/boxsets/3626-essential-fellini','Criterion · Essential Fellini')}${link('https://blogs.ntu.edu.sg/fellini/filmography/','Filmography reference')}</div><p class="sub">Years follow original release or television premiere. Criterion’s set contains a selection of these films.</p><button type="button" data-collection="Retrospective archive">Other directors & themes →</button></div></article><section class="fellini-view" aria-label="My view of Fellini"><h3>My view of Fellini</h3><label for="fellini-personal-view" class="sub">Your introduction to this retrospective</label><textarea id="fellini-personal-view" rows="15" placeholder="Write your view of Fellini here…"></textarea><p class="sub" id="fellini-save-status" aria-live="polite"></p></section>`+felliniFilms.map(([year,title,english,kind])=>`<article><div class="content"><span class="eyebrow">${year}</span><h3>${title}</h3>${english?'<p>'+english+'</p>':''}<p class="sub">${kind}</p><div class="actions">${link(search(title+' Federico Fellini'),'Find trailer')}${link('https://www.criterion.com/search#stq='+encodeURIComponent(title+' Fellini'),'Search Criterion')}</div></div></article>`).join('');}
+else if(section==='Retrospective archive'){subtitle.textContent='Explore directors, movements and themes';grid.innerHTML=Object.keys({...directors,...collections}).map(name=>`<article><div class="content"><span class="badge">${directors[name]?'Director retrospective':'Themed collection'}</span><h3>${name}</h3><button class="cursor-interaction" data-collection="${name}">Explore films →</button></div></article>`).join('');}
+else if(directors[section]||collections[section]){subtitle.textContent='An initial retrospective selection';grid.innerHTML=(directors[section]||collections[section]).map(title=>`<article><div class="content"><h3>${title}</h3>${link(search(title),'Find trailer')}</div></article>`).join('')+`<article><div class="content"><h3>Criterion Collection</h3>${link('https://www.criterion.com/search#stq='+encodeURIComponent(section),'Search Criterion')}<p class="sub">Edition and streaming availability must be checked separately.</p></div></article>`;}
+else if(section==='Festivals'){subtitle.textContent='Festival gateways for European, independent and world cinema';grid.innerHTML=[['Venice','https://www.labiennale.org/en/cinema'],['Cannes','https://www.festival-cannes.com/en/'],['Berlin','https://www.berlinale.de/en/home.html'],['Sundance','https://festival.sundance.org/'],['SXSW','https://sxsw.com/film-tv-festival/'],['Tribeca','https://tribecafilm.com/festival'],['Slamdance','https://slamdance.com/'],['Locarno','https://www.locarnofestival.ch/'],['FESPACO','https://fespaco.org/'],['Sydney','https://www.sff.org.au/']].map(([name,url])=>`<article><div class="content"><h3>${name}</h3><p>${['Sundance','SXSW','Tribeca','Slamdance'].includes(name)?'Independent cinema discoveries':'European and world cinema discoveries'}</p>${link(url,'Official festival')}<p class="sub">Awards and discoveries appear in the country sections.</p></div></article>`).join('');}
+else if(section==='Critics’ choices'){subtitle.textContent='Selected European, world and US independent films · Source lists may also contain studio films';grid.innerHTML=criticLists.map(l=>`<article><div class="content"><span class="eyebrow">${l.name}</span><h3>${l.title}</h3><p class="sub">${l.type}</p><p>${l.note||'A FilmScout subset of the original selection, keeping our independent and world cinema focus.'}</p><button type="button" data-critic="${l.name}">Explore selection →</button></div></article>`).join('');}
+else if(criticLists.some(l=>section===l.name)){const l=criticLists.find(l=>section===l.name);heading.textContent=l.name;subtitle.textContent=l.title+' · '+l.type;grid.innerHTML=`<article><div class="content"><span class="badge">Original source</span><h3>${l.name}</h3><p>${l.note||'Selected entries from this list. Original ordering and rankings have not been reproduced.'}</p>${link(l.url,'Open original list')}${l.app?' '+link(l.app,'Open on Letterboxd'):''}</div></article>`+l.films.map(title=>`<article><div class="poster"><small>${l.name.toUpperCase()}</small><strong>${title}</strong><small>${l.name==='MUBI Notebook'?'WRITER’S DOUBLE BILL':'SELECTED FROM THE ORIGINAL LIST'}</small></div><div class="content"><h3>${title}</h3><div class="actions">${link(search(title),'Find trailer')}${link(l.url,'Original selection')}</div></div></article>`).join('');}
+else{grid.innerHTML='<p>Select a FilmScout section.</p>';}const personalView=root.querySelector('#fellini-personal-view');if(personalView)personalView.value=felliniView;}
+const felliniDefaultView="Fellini, in my opinion, is one of the best filmmakers ever. His mastery is underappreciated in many respects. One episode from his life seems to me especially important in understanding his later filmmaking.\n\nIn April 1967, while preparing Il viaggio di G. Mastorna, a film about a journey into the afterlife, Fellini became gravely ill and was admitted to the Clinica Salvator Mundi on Rome’s Gianicolo hill. According to his collaborator Gianfranco Angelucci, he remained there for about a month, while doctors feared advanced lung cancer.\n\nA visit from an old school friend from Rimini, the doctor Ercole Sega, nicknamed Bagaròn, changed everything. Sega reviewed his medical records and suggested an unusual allergic pleurisy, described in Angelucci’s account as Sanarelli–Shwartzman disease. Treatment with cortisone reportedly brought a rapid recovery.\n\nThe illness contributed to Fellini’s abandonment of Mastorna, although the unrealised film continued to nourish his imagination and influence his later work. To me, this encounter with the possibility of death marks a profound turning point. From that moment, I see a new intensity and freedom in his films. His mastery seemed to carry a touch of God. This is my own reading of his work, but I feel that the connection deserves much more attention.\n\nAnother story, from before that illness, reveals Fellini’s mischievous humour. In a 1977 interview with Dick Cavett, with Sophia Loren sitting beside him, Marcello Mastroianni recalled being invited to meet Fellini on a beach near Rome to discuss La dolce vita. He brought his lawyer, hoping to preserve a little professional dignity. The producer wanted Paul Newman, but Fellini preferred Mastroianni’s ordinary, anonymous face.\n\nEncouraged by his lawyer, Mastroianni asked to read the script. Fellini summoned the writer Ennio Flaiano, who presented him with blank pages containing a drawing: a man swimming with an enormous penis, surrounded by dancing mermaids. Mastroianni recalled his embarrassment, then his decision to sign anyway.\n\nI love this anecdote for what it reveals about both men: Fellini’s irreverent imagination and Mastroianni’s willingness to laugh at himself. Calling his face ordinary seems an extraordinary understatement to me. Yet perhaps Fellini recognised precisely what made him exceptional—the ability to appear completely human while carrying the viewer into the strangest worlds.\n\nSources:\nGianfranco Angelucci, “Mastorna,” Articolo21 (21 November 2019): https://www.articolo21.org/2019/11/mastorna-quarantacinquesimo-capitolo-del-glossario-felliniano-verso-il-centenario-della-nascita-di-federico-fellini/\nAldo Tassone, “Le chef d’œuvre inachevé de Fellini,” Comédie-Française (5 March 2019): https://www.comedie-francaise.fr/actualites/le-chef-doeuvre-inacheve-de-fellini\nRoland Novak’s unofficial transcription of the 1977 Dick Cavett interview, part 3: https://rolandnovak.wordpress.com/2020/12/14/11_h-hour-curfew-time-october-10-1977-part-3/";const felliniViewKey='filmscout-fellini-personal-view-oct11-approved';let felliniView=felliniDefaultView;try{felliniView=localStorage.getItem(felliniViewKey)??felliniDefaultView;}catch{}root.addEventListener('input',e=>{if(e.target.id!=='fellini-personal-view')return;felliniView=e.target.value;const status=root.querySelector('#fellini-save-status');try{localStorage.setItem(felliniViewKey,felliniView);status.textContent='Saved in this browser. Keep a separate copy for publishing.';}catch{status.textContent='Kept while this page is open. Copy your text before closing.';}});
+root.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='fs-back'){const previous=history.pop();if(previous){section=previous.section;country=previous.country;europeCountry=previous.europeCountry;usFestival=previous.usFestival;worldRegion=previous.worldRegion;}else{section='Discover';country='All';}render();return;}if(b.dataset.section||b.dataset.country||b.dataset.collection||b.dataset.critic){save();if(b.dataset.section){section=b.dataset.section;country='All';}if(b.dataset.country){worldRegion='All';usFestival='All';const usSelect=root.querySelector('#fs-us-picker select');if(usSelect)usSelect.value='All';europeCountry='All';country=b.dataset.country;section=country==='All'?'Discover':'Country';}if(b.dataset.collection)section=b.dataset.collection;if(b.dataset.critic)section=b.dataset.critic;render();}});
+root.querySelector('#fs-back').textContent='← Back';const awardButton=document.createElement('button');awardButton.type='button';awardButton.className='cursor-interaction';awardButton.dataset.section='National Awards';awardButton.textContent='National Awards';root.querySelector('nav').insertBefore(awardButton,root.querySelector('[data-section="Retrospectives"]'));
+root.querySelector('.intro label').remove();const picker=document.createElement('label');picker.id='fs-europe-picker';picker.textContent='Explore a production country ';const sel=document.createElement('select');sel.setAttribute('aria-label','European production country');const countries=[...new Set(films.filter(f=>f.country==='Other Europe'&&f.countries).flatMap(f=>f.countries.split(', ')))].filter(c=>!['Italy','France','Spain','United States','Nigeria'].includes(c)).sort();sel.innerHTML=['All',...countries].map(c=>'<option>'+c+'</option>').join('');picker.appendChild(sel);filters.after(picker);sel.addEventListener('change',()=>{europeCountry=sel.value;filmCards();});const up=document.createElement('label');up.id='fs-us-picker';up.textContent='Explore a festival or award ';const us=document.createElement('select');us.setAttribute('aria-label','US independent festival');us.innerHTML=['All','Sundance','SXSW','Tribeca','Slamdance','Spirit Awards'].map(f=>'<option>'+f+'</option>').join('');up.appendChild(us);filters.after(up);us.addEventListener('change',()=>{usFestival=us.value;filmCards();});const wp=document.createElement('label');wp.id='fs-world-picker';wp.textContent='Explore a region ';const ws=document.createElement('select');ws.setAttribute('aria-label','World cinema region');ws.innerHTML=['All','Africa','Asia','Middle East','Latin America','Oceania','Canada'].map(r=>'<option>'+r+'</option>').join('');wp.appendChild(ws);filters.after(wp);ws.addEventListener('change',()=>{worldRegion=ws.value;filmCards();});root.querySelector('footer').textContent='FilmScout · v1.0 · Critics’ lists checked 10 October 2026 · Research snapshot 10 October 2026 · Title artwork, not official posters · Trailer links open YouTube search · Cinema focus may differ from production countries · Overlaps included · Curated selection';render();
+})();
+</script>
+</div>
 
-  <!-- =========================================================================
-       CHANGED 23 Aug 2026 — two additions, nothing else touched:
-         1. meta description + canonical (there were none, so search engines
-            were inventing a description from whatever text they found first)
-         2. a link to naturist-beaches-france.html in the naturist card
-       ====================================================================== -->
-  <title>ScoutPlatform &mdash; BookScout, MusicScout, FilmScout, BeachScout and worldwide discovery tools</title>
-  <meta name="description" content="BookScout, MusicScout, FilmScout and the ScoutPlatform family: books, music, films, beaches, city parking, road exploration, hotels and EV road-trip charging." />
-  <link rel="canonical" href="https://bymilossavic.com/" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://bymilossavic.com/#milos-savic",
-        "name": "Miloš Savić",
-        "alternateName": [
-          "Milos Savic",
-          "Milos Savić",
-          "Miloš Savic"
-        ],
-        "url": "https://bymilossavic.com/about.html",
-        "email": "mailto:contact@bymilossavic.com",
-        "jobTitle": "Independent Software Developer",
-        "description": "Independent developer and creator of ScoutPlatform — worldwide discovery tools including BookScout, MusicScout, BeachScout, RoadScout, ParkingScout and EVchargeScout.",
-        "knowsAbout": [
-          "OpenStreetMap",
-          "Open geographic data",
-          "Web mapping",
-          "Progressive web applications",
-          "Travel technology",
-          "EV charging infrastructure",
-          "Android application development"
-        ],
-        "sameAs": [
-          "https://github.com/milossavicgit",
-          "https://www.linkedin.com/in/milossavic/",
-          "https://play.google.com/store/apps/dev?id=4627318307378995391"
-        ],
-        "mainEntityOfPage": {
-          "@id": "https://bymilossavic.com/about.html#profilepage"
-        }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://bymilossavic.com/#scoutplatform",
-        "name": "ScoutPlatform",
-        "alternateName": "Scout Platform",
-        "url": "https://bymilossavic.com/",
-        "description": "An independent collection of free exploration tools built on open geographic data. No accounts, no fees.",
-        "email": "contact@bymilossavic.com",
-        "founder": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "sameAs": [
-          "https://github.com/milossavicgit",
-          "https://play.google.com/store/apps/dev?id=4627318307378995391"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://bymilossavic.com/#website",
-        "url": "https://bymilossavic.com/",
-        "name": "ScoutPlatform",
-        "inLanguage": "en",
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "copyrightHolder": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://bymilossavic.com/#webpage",
-        "url": "https://bymilossavic.com/",
-        "name": "ScoutPlatform — BookScout, MusicScout, FilmScout, BeachScout and worldwide discovery tools",
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#website"
-        },
-        "about": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        }
-      },
-      {
-        "@type": "MobileApplication",
-        "@id": "https://bymilossavic.com/#beachscout",
-        "name": "BeachScout",
-        "url": "https://milossavicgit.github.io/BeachScout/",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Android, Web browser",
-        "description": "Find beaches worldwide on one map: naturist and dog-friendly beaches, sea conditions, nearby parking and accommodation. Free, no account needed.",
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        },
-        "alternateName": "BeachScout: Naturist Beaches",
-        "softwareVersion": "2.3",
-        "installUrl": "https://play.google.com/store/apps/details?id=com.milossavic.beachscout"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://bymilossavic.com/#roadscout",
-        "name": "RoadScout",
-        "url": "https://milossavicgit.github.io/RoadScout/",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Web browser",
-        "description": "Discover cultural and natural places along your driving route, not just at your destination.",
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        }
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://bymilossavic.com/#parkingscout",
-        "name": "ParkingScout",
-        "url": "https://milossavicgit.github.io/ParkingScout/",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Web browser",
-        "description": "City parking maps that show free parking separately from paid, with EV charging points included.",
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        }
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://bymilossavic.com/#evchargescout",
-        "name": "EVchargeScout",
-        "url": "https://milossavicgit.github.io/EVchargeScout/",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Web browser",
-        "description": "EV road-trip charging planner: traces the real road route and picks fast-charger stops with range safety margins.",
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        }
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://bymilossavic.com/#hotelscout",
-        "name": "HotelScout",
-        "url": "https://milossavicgit.github.io/HotelScout/",
-        "applicationCategory": "TravelApplication",
-        "operatingSystem": "Web browser",
-        "description": "Search accommodation along a whole route rather than around a single point.",
-        "author": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "creator": {
-          "@id": "https://bymilossavic.com/#milos-savic"
-        },
-        "publisher": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "isPartOf": {
-          "@id": "https://bymilossavic.com/#scoutplatform"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        }
-      }
-    ]
-  }
-  </script>
-
-  <style>
-    :root{
-      --paper:#f4efe6; --panel:#fffdf8; --ink:#1c1a17;
-      --muted:#7f7465; --rule:#d8cfbe; --accent:#b5471f;
-      --blue:#075985; --green:#166534;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Georgia,"Times New Roman",serif;background:var(--paper);color:var(--ink);line-height:1.55}
-    a{color:var(--accent);font-weight:bold;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1120px;margin:0 auto;padding:34px 18px 60px}
-    header{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;margin-bottom:34px}
-    .hero,.status-card,.card{background:var(--panel);border:1px solid var(--rule);border-radius:22px;padding:26px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    h1{margin:0 0 8px;font-size:44px;line-height:1.05}
-    h2{margin:0;font-size:30px;line-height:1.1}
-    h3{margin:0 0 8px;font-size:23px}
-    .tagline{font-size:20px;color:var(--muted);margin-bottom:18px}
-    .lead{font-size:17px;max-width:720px}
-    .badge{display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;background:#dcfce7;color:var(--green);margin-bottom:12px}
-    .badge.planned{background:#e0f2fe;color:var(--blue)}
-    section{margin:34px 0}
-    .section-head{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start;margin-bottom:14px}
-    .section-note{color:var(--muted);font-size:15px;margin-top:5px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card p{margin:0 0 12px;color:#3c352c}
-    ul{padding-left:20px;margin:10px 0 0}
-    li{margin:5px 0}
-    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:bold;text-decoration:none}
-    .btn:hover{text-decoration:none;background:#933619}
-    .btn.secondary{background:#6b7280}.btn.blue{background:#2563eb}
-    .legal-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-    .legal-links a{display:block;background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:16px;color:var(--ink)}
-    .tech{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .tech span{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px;text-align:center;font-size:14px}
-    .highlight{background:linear-gradient(180deg,#fffdf8,#f6f1e6);border:2px solid var(--green);border-radius:22px;padding:26px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .highlight h3{font-size:26px}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pill{background:#dcfce7;color:var(--green);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:bold}
-    .pill.warn{background:#fee2e2;color:#9a4226}
-    .pill.mid{background:#ece7dc;color:#6b6151}
-    .caveat{color:var(--muted);font-size:14px;margin-top:14px;font-style:italic}
-    .guide-link{margin-top:12px !important;padding-top:12px;border-top:1px solid var(--rule)}
-    .stories-feature{background:#fff7e9;border:1px solid var(--rule);border-radius:22px;padding:26px}
-    .stories-feature .section-note{margin:8px 0 18px;max-width:720px}
-    .stories-feature .card{box-shadow:none}
-    footer{border-top:1px solid var(--rule);margin-top:44px;padding-top:20px;color:var(--muted);font-size:14px}
-    @media(max-width:820px){
-      header,.section-head{grid-template-columns:1fr}
-      h1{font-size:34px}
-      .grid,.grid.three,.legal-links,.tech{grid-template-columns:1fr}
-      .wrap{padding:22px 12px 44px}
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="hero">
-        <h1>ScoutPlatform</h1>
-        <div class="tagline">Simple exploration tools built with open data and community knowledge.</div>
-        <p class="lead">ScoutPlatform is an independent project by <a href="about.html">Milos Savic</a>. Its applications help people discover useful and interesting places around the world through open geographic data, clear maps and responsible community contributions.</p>
-        <div class="button-row">
-          <a class="btn" href="https://milossavicgit.github.io/BookScout/">Open BookScout</a>
-          <a class="btn" href="https://milossavicgit.github.io/MusicScout/MusicScout-V1.html">Open MusicScout</a>
-          <a class="btn" href="https://milossavicgit.github.io/FilmScout/">Open FilmScout</a>
-          <a class="btn" href="https://milossavicgit.github.io/BeachScout/">Open BeachScout</a>
-          <a class="btn blue" href="https://play.google.com/store/apps/details?id=com.milossavic.beachscout">Get it on Google Play</a>
-          <a class="btn secondary" href="beachscout.html">Naturist Beach Guide</a>
-          <a class="btn secondary" href="stories.html">Stories &amp; field notes</a>
-          <a class="btn secondary" href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="badge">New &mdash; worldwide book discovery</div>
-        <h3>📚 BookScout</h3>
-        <p>Worldwide book discovery platform featuring bestseller charts, English translations, independent publishers and verified places to buy books.</p>
-        <ul>
-          <li>37 countries and 111 curated English-language editions</li>
-          <li>English translations with translator and publisher details</li>
-          <li>Independent publishers and direct buying links prioritised</li>
-          <li>Africa, Asia, Europe, the Americas and Oceania</li>
-        </ul>
-        <div class="button-row">
-          <a class="btn" href="https://milossavicgit.github.io/BookScout/">Launch BookScout</a>
-        </div>
-      </div>
-    </header>
-
-    <section class="stories-feature" aria-labelledby="stories-title">
-      <div class="badge planned">From the places, music and journeys behind the maps</div>
-      <h2 id="stories-title">Stories &amp; field notes</h2>
-      <p class="section-note">Photographs, first-hand observations and longer stories alongside the Scout tools. Start with a beach guide, follow an artist's story, or read notes from an electric road trip.</p>
-      <div class="grid three">
-        <div class="card"><h3>🏖 BeachScout</h3><p>Read the first San Cataldo field note, with a July photograph of the free beach and first-hand observations of the shoreline.</p><a href="san-cataldo-beaches.html">Read the San Cataldo story →</a><br><a href="stories.html#beachscout">All beach stories →</a></div>
-        <div class="card"><h3>🎵 MusicScout</h3><p>The people and places behind the music, with listening links where available.</p><a href="stories.html#musicscout">Music stories →</a></div>
-        <div class="card"><h3>⚡ EVchargeScout</h3><p>Notes from actual routes, charging stops and the questions a route planner cannot answer alone.</p><a href="stories.html#evchargescout">EV journey notes →</a></div>
-      </div>
-      <div class="button-row"><a class="btn" href="stories.html">Explore all stories</a></div>
-    </section>
-
-    <section>
-      <div class="status-card">
-        <div class="badge">BeachScout 2.3 &mdash; live on Google Play</div>
-        <h3>New: dog-friendly beaches</h3>
-        <p>BeachScout now reads dog access straight from OpenStreetMap and shows it on the beach page, plus a whole-country map of every beach that records a dog rule. As far as we know, no other beach app does this.</p>
-        <ul>
-          <li>Dog access: allowed, on a lead, banned or seasonal</li>
-          <li>Country-wide maps for dog and naturist places</li>
-          <li>Accommodation within 3 km, with address and phone</li>
-          <li>Sea temperature, waves, wind and UV</li>
-          <li>Nearest public parking</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>What you can search</h2>
-        <div class="section-note">BeachScout started as a beach map. It has grown into a way of asking practical questions about a stretch of coast before you drive to it.</div>
-      </div>
-
-      <div class="highlight">
-        <div class="badge">New in 2.3</div>
-        <h3>&#128021; Can I bring my dog?</h3>
-        <p>Most beach apps cannot answer this. BeachScout can, wherever a local mapper has recorded it. Open <strong>Dog beaches in this country</strong> and you get every beach in that country that states a rule, on one map, colour-coded:</p>
-        <div class="pill-row">
-          <span class="pill">Dogs allowed</span>
-          <span class="pill">Dedicated dog beach</span>
-          <span class="pill">On a lead</span>
-          <span class="pill warn">Dogs not allowed</span>
-          <span class="pill mid">Changes with the season</span>
-        </div>
-        <p style="margin-top:14px">Tap any dot for the full beach page: conditions, accommodation nearby, parking and coordinates. A ban is shown just as clearly as permission &mdash; knowing where you cannot go saves a wasted journey.</p>
-        <p class="caveat">Coverage depends entirely on what local mappers have recorded, and it is uneven. Germany, Croatia, Spain and the Netherlands are well mapped; many countries have almost nothing yet. A beach with no dog tag is not a beach that bans dogs &mdash; it is a beach nobody has recorded. BeachScout never guesses, and always tells you to check local signs.</p>
-      </div>
-
-      <div class="grid" style="margin-top:16px">
-        <div class="card">
-          <h3>&#128205; Detailed search</h3>
-          <p>Search 10 km around any town in the world, or 10 km around wherever you are standing.</p>
-          <ul>
-            <li>Beaches, lake and river swimming places</li>
-            <li>Naturist beaches, resorts and campsites</li>
-            <li>Beach resorts, lidos and swimming pools</li>
-            <li>Local names translated to English where the data allows</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>&#127958; Naturist places, country by country</h3>
-          <p>The whole of a country's naturist coastline on one map, in the same colours the search uses.</p>
-          <ul>
-            <li>Official and customary naturist beaches</li>
-            <li>Naturist resorts, villages and campsites</li>
-            <li>Naturist swimming pools</li>
-            <li>Browse as a map or as a grouped list</li>
-          </ul>
-          <!-- ADDED 23 Aug 2026. This is the only inbound link to the country
-               guide; without it the page is an orphan and ranks accordingly.
-               Rendered as a button rather than inline text: the global link
-               style is red and bold with no underline, which reads as emphasis
-               rather than as something you can click. Reuses .btn/.button-row
-               so it matches every other card on the page. -->
-          <p class="guide-link">Country guides &mdash; all 563 naturist locations in France, and what the official and customary labels actually mean. More countries to follow.</p>
-          <div class="button-row">
-            <a class="btn" href="naturist-beaches-france.html">Naturist beaches in France</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>&#127754; Beach conditions</h3>
-          <p>What the water is doing today, at that beach, before you set off.</p>
-          <ul>
-            <li>Air and sea temperature</li>
-            <li>Wave height and wind</li>
-            <li>UV index and rain</li>
-            <li>Sunset time</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>&#127976; Stay nearby and parking</h3>
-          <p>Practical detail for actually getting there and staying the night.</p>
-          <ul>
-            <li>Hotels, guest houses, apartments and campsites within 3 km</li>
-            <li>Full postal address in the local convention</li>
-            <li>Telephone number and official website</li>
-            <li>Nearest public parking, with walking directions</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Applications</h2>
-        <div class="section-note">Each Scout application brings the same discovery idea to a different subject, from books, music and cinema to places around the world.</div>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <div class="badge">New &mdash; worldwide book discovery</div>
-          <h3>📚 BookScout</h3>
-          <p>Worldwide book discovery platform featuring bestseller charts, English translations, independent publishers and verified places to buy books.</p>
-          <ul>
-            <li>37 countries and 111 curated English-language editions</li>
-            <li>Eastern and Western Europe listed separately</li>
-            <li>Original language, translator and English publisher shown</li>
-            <li>Regional discovery across Africa, Asia, the Americas and Oceania</li>
-            <li>Independent publishers and publisher-direct links prioritised</li>
-          </ul>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/BookScout/">Launch BookScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge">Live &mdash; web</div>
-          <h3>🎵 MusicScout</h3>
-          <p>Explore source-linked country music charts, specialist selections and artist stories, with links to listen on YouTube.</p>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/MusicScout/MusicScout-V1.html">Launch MusicScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge">New &mdash; FilmScout v1</div>
-          <h3>🎬 FilmScout</h3>
-          <p>Discover European, world and US independent cinema through festival awards, critics’ picks, documentaries and director retrospectives.</p>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/FilmScout/">Launch FilmScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge">Live &mdash; web and Android</div>
-          <h3>🏖 BeachScout</h3>
-          <p>Discover beaches, dog-friendly beaches, naturist beaches, swimming places, naturist resorts and campsites worldwide.</p>
-          <ul>
-            <li>Detailed 10 km search, worldwide</li>
-            <li>Search where you are standing</li>
-            <li>Dog access shown on every beach that records it</li>
-            <li>Country-wide dog and naturist maps</li>
-            <li>Sea conditions, accommodation and parking</li>
-            <li>Satellite and street maps</li>
-            <li>Community photos and descriptions</li>
-          </ul>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/BeachScout/">Launch BeachScout</a>
-            <a class="btn blue" href="https://play.google.com/store/apps/details?id=com.milossavic.beachscout">Get it on Google Play</a>
-            <a class="btn secondary" href="beachscout.html">About BeachScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge planned">Upgrade planned</div>
-          <h3>🛣 RoadScout</h3>
-          <p>Discover cultural, historic and natural places along routes or near your current location.</p>
-          <ul>
-            <li>Route-based exploration</li>
-            <li>Cultural and natural discovery</li>
-            <li>OpenStreetMap and Wikimedia resources</li>
-            <li>Future ScoutPlatform upgrade planned</li>
-          </ul>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/RoadScout/">Launch RoadScout</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Coming next</h2>
-        <div class="section-note">ScoutPlatform is designed to grow into a wider ecosystem of focused exploration tools.</div>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <div class="badge planned">Early access &mdash; web</div>
-          <h3>&#128663; ParkingScout</h3>
-          <p>A map of a city's parking that makes clear which of it is free &mdash; the question every driver actually has.</p>
-          <ul>
-            <li>Free, paid and unrecorded parking shown honestly apart, free first</li>
-            <li>Customers-only business parking hidden, so &ldquo;free&rdquo; means free</li>
-            <li>Time-limited spots flagged (1h / 2h) &mdash; a reminder to set the parking disc</li>
-            <li>EV charging from Open Charge Map: operator, cost, and whether you also pay for parking</li>
-            <li>Park-and-ride, city search and Google Maps links for every spot</li>
-          </ul>
-          <p class="caveat">Early access, cities being added. Parking comes from OpenStreetMap and chargers from Open Charge Map, prepared per city; where a city is thinly mapped the app says so, and unrecorded parking is never shown as free.</p>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/ParkingScout/">Launch ParkingScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge planned">Early access &mdash; web</div>
-          <h3>&#9889; EVchargeScout</h3>
-          <p>An EV road-trip charging planner: tell it where you're driving and your car's range, and it plans the charging stops so you never run flat.</p>
-          <ul>
-            <li>Real road routing with ferries and alternative routes &mdash; driving + charging + total time</li>
-            <li>Charging stops on an 80% range safety margin; chargers shown in three tiers (slow / fast / ultra-rapid)</li>
-            <li>Charger down or occupied? Tap it &mdash; or any point &mdash; to see working alternatives within 5/10/20&nbsp;km as &#9889; markers</li>
-            <li>Accommodation within 3&nbsp;km of any stop, and long trips split into overnight legs with a HotelScout link</li>
-            <li>156 EV models (incl. Chinese brands), operator &amp; which app per stop, and a ballpark charging cost</li>
-            <li>Vignette / road-toll warnings with official buy-links before you cross a border</li>
-          </ul>
-          <p class="caveat">Early access. Chargers from Open Charge Map; routing and location-aware place search from OpenStreetMap (Valhalla / Photon / Nominatim) &mdash; fully keyless. Charging and ferry times are estimates; live charger status lives in your charging app &mdash; always check a charger and your real range.</p>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/EVchargeScout/">Launch EVchargeScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="badge planned">Early access &mdash; web</div>
-          <h3>&#127976; HotelScout</h3>
-          <p>Accommodation along a route rather than at a single point &mdash; for the night you have not planned yet, somewhere between A and B.</p>
-          <ul>
-            <li>Search a whole route corridor, not just one town</li>
-            <li>Hotels, motels, guest houses and campsites</li>
-            <li>Full address, telephone and official website</li>
-            <li>Built on the same open data as BeachScout</li>
-          </ul>
-          <p class="caveat">Early access &mdash; a working web version (v0.14) is live and being rebuilt on the BeachScout foundations. Accommodation from OpenStreetMap, routing from OSRM &mdash; keyless.</p>
-          <div class="button-row">
-            <a class="btn" href="https://milossavicgit.github.io/HotelScout/">Launch HotelScout</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>⛰ MountainScout</h3>
-          <p>Mountains, viewpoints and trails, with the ascent and the season made plain.</p>
-        </div>
-        <div class="card">
-          <h3>🏛 HeritageScout</h3>
-          <p>Historic sites and cultural places, drawing on OpenStreetMap and Wikimedia.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Launch information</h2>
-        <div class="section-note">Information required by users and app stores, kept current with the published Android release.</div>
-      </div>
-      <div class="legal-links">
-        <a href="privacy.html"><strong>Privacy Policy</strong><br>Explains location use, analytics, user uploads and data handling.</a>
-        <a href="terms.html"><strong>Terms of Use</strong><br>Rules for using BeachScout and contributing content.</a>
-        <a href="contact.html"><strong>Contact / Support</strong><br>Contact information for support, privacy requests and removal requests.</a>
-        <a href="data-deletion.html"><strong>Data Deletion</strong><br>How to request deletion of your personal data and user-submitted content.</a>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Community contributions</h2>
-        <div class="section-note">BeachScout is designed to become more useful as local users add knowledge.</div>
-      </div>
-      <div class="card">
-        <p>Users may contribute local beach information, including up to five photos and a short description of up to 300 characters. Contributions are reviewed before publication.</p>
-        <p>Contributors remain the owners of their photographs and descriptions. BeachScout receives permission only to store, moderate and display those contributions as part of the service.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Open technologies</h2>
-        <div class="section-note">ScoutPlatform is built around accessible web technologies and open geographic data.</div>
-      </div>
-      <div class="tech">
-        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>MapLibre</span>
-        <span>OpenStreetMap</span><span>Nominatim</span><span>Overpass API</span><span>Open Charge Map</span>
-        <span>Wikimedia</span><span>Supabase</span><span>GitHub Pages</span><span>Android WebView</span>
-        <span>Google Play</span>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>About the creator</h2>
-        <div class="section-note">Independent project by Milos Savic.</div>
-      </div>
-      <div class="card">
-        <p>BeachScout and ScoutPlatform were created by <a href="about.html">Milos Savic</a>. BeachScout began with a simple idea: to build a worldwide map useful to the naturist community, while also serving anyone looking for beaches and swimming places around the world.</p>
-        <p>The project is independent, community-oriented and built with the goal of remaining free or inexpensive to use.</p>
-      </div>
-    </section>
-
-    <footer>
-      <p>
-        <a href="about.html">About</a> ·
-        <a href="privacy.html">Privacy Policy</a> ·
-        <a href="terms.html">Terms of Use</a> ·
-        <a href="contact.html">Contact</a> ·
-        <a href="data-deletion.html">Data Deletion</a>
-      </p>
-      <p>© 2026 Milos Savic / ScoutPlatform. BeachScout 2.3, live on web and Google Play.</p>
-      <p>Geographic names are used for practical search purposes and do not imply political positions.</p>
-    </footer>
-  </div>
-</body>
-</html>
+</body></html>
